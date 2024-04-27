@@ -29,10 +29,22 @@ abstract class _$AppRouter extends RootStackRouter {
         child: HomeWrapperPage(key: args.key),
       );
     },
+    MenuMainRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MenuMainPage(),
+      );
+    },
     MenuWrapperRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const MenuWrapperPage(),
+      );
+    },
+    OrdersMainRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const OrdersMainPage(),
       );
     },
     OrdersWrapperRoute.name: (routeData) {
@@ -88,6 +100,20 @@ class HomeWrapperRouteArgs {
 }
 
 /// generated route for
+/// [MenuMainPage]
+class MenuMainRoute extends PageRouteInfo<void> {
+  const MenuMainRoute({List<PageRouteInfo>? children})
+      : super(
+          MenuMainRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MenuMainRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [MenuWrapperPage]
 class MenuWrapperRoute extends PageRouteInfo<void> {
   const MenuWrapperRoute({List<PageRouteInfo>? children})
@@ -97,6 +123,20 @@ class MenuWrapperRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'MenuWrapperRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [OrdersMainPage]
+class OrdersMainRoute extends PageRouteInfo<void> {
+  const OrdersMainRoute({List<PageRouteInfo>? children})
+      : super(
+          OrdersMainRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'OrdersMainRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

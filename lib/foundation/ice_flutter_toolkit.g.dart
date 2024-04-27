@@ -51,15 +51,18 @@ mixin _$RouteCore on RouteCoreBase, Store {
   late final _$treeAtom = Atom(name: 'RouteCoreBase.tree', context: context);
 
   @override
-  RouteNode get tree {
+  RouteInfo get tree {
     _$treeAtom.reportRead();
     return super.tree;
   }
 
+  bool _treeIsInitialized = false;
+
   @override
-  set tree(RouteNode value) {
-    _$treeAtom.reportWrite(value, super.tree, () {
+  set tree(RouteInfo value) {
+    _$treeAtom.reportWrite(value, _treeIsInitialized ? super.tree : null, () {
       super.tree = value;
+      _treeIsInitialized = true;
     });
   }
 

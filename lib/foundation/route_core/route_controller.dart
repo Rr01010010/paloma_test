@@ -1,11 +1,18 @@
 part of '../ice_flutter_toolkit.dart';
 
 abstract class RouteController {
-  final RouteCore core = RouteCore.get();
+  final RouteCore core = RouteCore.get;
 
   static T get<T extends RouteController>([bool forcePush = false]) {
-    var service = RouteCore.get().tree.getService<T>();
-    service ??= (_controllersMap[T] ?? controllersFactories[T]!(forcePush)) as T;
+  // static Future<T> get<T extends RouteController>([bool forcePush = false]) async {
+    // await Future.delayed(const Duration(milliseconds: 1000));
+    // var v = T as RouteController;
+    var path = paths[T]!();
+    print("GET $T -> PATH: $path");
+    var service = RouteCore.get.tree.getService<T>(path);
+    // service ??= RouteController.create() as T;
+    // (_controllersMap[T] ?? controllersFactories[T]!(forcePush)) as T;
+    if(service == null) throw Exception("RouteController.get<$T>(path: $path) not found service");
     return service;
   }
 
@@ -23,29 +30,47 @@ abstract class RouteController {
   //   return this as T;
   // }
 
-  static final Map<Type, RouteController> _controllersMap = {};
-  static final Map<Type, RouteController Function([bool])> controllersFactories = {};
+  // external factory RouteController.create();
+
+  // static final Map<Type, RouteController> _controllersMap = {};
+  // static final Map<Type, RouteController Function([bool])> controllersFactories = {};
   RouteController([bool forcePush = false]) {
-    var service = forcePush ? null : _getService();
-    if (service == null) _setService();
+  //   var service = forcePush ? null : _getService();
+  //   if (service == null) _setService();
   }
 
-  // void init();
-  // void recordFactory();
-
-  void _setService<T extends RouteController>([T? service]) {
-    service ??= this as T;
-    _controllersMap[T] = service;
-    core.tree.setService<T>(service, path);
-  }
-
-  T? _getService<T extends RouteController>() => core.tree.getService<T>(path);
+  Future<void> initController();
+  Future<void> disposeController();
+  //
+  // void _setService<T extends RouteController>([T? service]) {
+  //   service ??= this as T;
+  //   // _controllersMap[T] = service;
+  //   core.tree.setService<T>(service, path);
+  // }
+  //
+  // T? _getService<T extends RouteController>() => core.tree.getService<T>(path);
 
 
   ///for navigation with controller
   StackRouter? router;
 
-  late String path;// => AppRouterBase.singleton.fullForServices[runtimeType] ?? "";
+  static final Map<Type,String Function()> paths = {};
+  String get path => routeInfo.fullPath;
+  late RouteInfo _routeInfo;
+
+  RouteInfo get routeInfo => _routeInfo;
+
+  set routeInfo(RouteInfo value) {
+    _routeInfo = value;
+    paths[runtimeType] = ()=>routeInfo.fullPath;
+  }
+  // String get path => _path;
+
+  // set path(String value) {
+  //   print("SET PATH: $value");
+  //   _path = value;
+  //   paths[runtimeType] = _path;
+  // }// => AppRouterBase.singleton.fullForServices[runtimeType] ?? "";
   String get name => path.split('/').last;
 
   navigateRoute([StackRouter? sRouter, useName = false]) =>

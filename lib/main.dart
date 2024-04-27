@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    RouteCore.create(EmptyRepositoriesContainer(),routeCollection: _appRouter.routeCollection);
+    RouteCore.create(EmptyRepositoriesContainer(), _appRouter);
 
     return MaterialApp.router(
       routerConfig: _appRouter.config(),

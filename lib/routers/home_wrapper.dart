@@ -66,7 +66,7 @@ class HomeWrapperPage extends StatelessWidget {
                         child: Icon(
                           pathIcons[index],
                           size: 24,
-                          color: AppColors.testColor1,
+                          color: AppColors.pal1ce9c46a,
                         ),
                       ),
                       activeIcon: Padding(
@@ -74,7 +74,7 @@ class HomeWrapperPage extends StatelessWidget {
                         child: Icon(
                           pathIcons[index],
                           size: 24,
-                          color: AppColors.testColor2,
+                          color: AppColors.pal1c2a9d8f,
                         ),
                       ),
                     ),
