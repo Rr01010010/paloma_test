@@ -1,14 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bind3/bind3.dart';
 import 'package:blur/blur.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:palette_generator/palette_generator.dart';
-import 'package:paloma_test/foundation/ice_flutter_toolkit.dart';
-import 'package:paloma_test/foundation/route_core/controller_state.dart';
-import 'package:paloma_test/ui/menu_main/menu_main_controller.dart';
 import 'package:paloma_test/ui/orders_main/orders_main_controller.dart';
 import 'package:paloma_test/utils/app_colors.dart';
 import 'package:paloma_test/utils/extensions.dart';

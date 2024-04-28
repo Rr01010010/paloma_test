@@ -1,6 +1,6 @@
+import 'package:bind3/bind3.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:paloma_test/foundation/ice_flutter_toolkit.dart';
 import 'package:paloma_test/ui/menu_main/menu_main_controller.dart';
 
 part 'orders_main_controller.g.dart';
